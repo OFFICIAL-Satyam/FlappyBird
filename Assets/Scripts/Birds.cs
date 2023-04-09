@@ -18,7 +18,7 @@ public class Birds : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space)==true && birdIsAlive == true)
+        if (Input.GetMouseButtonDown(0)==true && birdIsAlive == true)
         {
             myRigidbody.velocity = Vector2.up * flapStrength;
         }
