@@ -6,20 +6,28 @@ public class Birds : MonoBehaviour
 {
 
     public Rigidbody2D myRigidbody ;
-    // Start is called before the first frame update
+    public float flapStrength;
+    public Logic logic;
+    public bool birdIsAlive = true;
     void Start()
     {
-        
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logic>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space)==true)
+        if (Input.GetKeyDown(KeyCode.Space)==true && birdIsAlive == true)
         {
-            myRigidbody.velocity = Vector2.up *10;
+            myRigidbody.velocity = Vector2.up * flapStrength;
         }
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+       logic.gameOver();
+       birdIsAlive = false; 
     }
 }
